@@ -1,0 +1,58 @@
+SELECT ProductName, UnitPrice
+FROM Product
+ORDER BY UnitPrice DESC;
+
+SELECT ProductName, UnitPrice
+FROM Product
+ORDER BY UnitPrice ASC;
+
+SELECT * FROM Product;
+SELECT ProductName, UnitsInStock, UnitsOnOrder
+FROM Product
+WHERE ((IsDiscontinued = 0) AND ((UnitsInStock)<UnitsOnOrder));
+
+
+SELECT ProductName, UnitsInStock, UnitsOnOrder
+FROM Product
+WHERE(UnitsInStock < UnitsOnOrder);
+
+
+
+SELECT * FROM Customer;
+SELECT * FROM Orders;
+SELECT * FROM OrderItem;
+SELECT * FROM Product;
+SELECT * FROM Supplier;
+
+SELECT p.Category, s.CompanyName 
+FROM Product p
+JOIN Supplier s ON p.SupplierID = s.ID
+GROUP BY s.ID,p.Category,s.CompanyName;
+
+
+
+SELECT * FROM Customer;
+SELECT * FROM Orders;
+
+SELECT c.FirstName, c.LastName, o.ID, o.OrderDate
+FROM Customer c
+JOIN Orders o ON c.ID = o.CustomerID
+WHERE o.OrderNumber = 14;
+
+
+SELECT c.*,o.*
+FROM Customer c 
+JOIN Orders o ON c.ID = o.CustomerID
+WHERE c.ID IN (SELECT CustomerID FROM Orders
+				GROUP BY CustomerID
+				HAVING COUNT(*) >= ALL(SELECT COUNT(*) FROM Orders GROUP BY CustomerID)
+);
+
+
+SELECT ID,FirstName FROM Customer
+WHERE FirstName LIKE '%RA%';
+
+SELECT * FROM Customer
+
+SELECT SUBSTRING(LTRIM(CompanyName),1,(CHARINDEX(' ',LTRIM(CompanyName) + ' ')-1)) AS ShortName
+FROM Supplier;
