@@ -91,7 +91,7 @@ values(10,102,1002,2500.50,3),
  Select * from OrderItem
 
 Select country from Customer 
-where FirstName LIKE 'R%' Or FirstName LIKE 'S%';
+where country LIKE 'A%' Or country LIKE 'I%';
 
 Select FirstName,LastName from Customer
 where FirstName LIKE '__i%';
